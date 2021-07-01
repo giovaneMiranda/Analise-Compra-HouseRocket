@@ -1,6 +1,5 @@
-# bibliotecas
-venv/
+#docs
+/docs/
 
-# documentacao
-docs/Problema_Negocio.docx
-
+#lib
+/venv/

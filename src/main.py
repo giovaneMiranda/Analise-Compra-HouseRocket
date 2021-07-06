@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-import pagina as pg
+import page as pg
 
 
 @st.cache(allow_output_mutation=True)
@@ -47,7 +47,6 @@ def gen_purchase_table(df_house):
 
 def gen_sale_table(df_house):
     """Generate df of sale analysis, calculating the median price per zipcode and seasonality"""
-
     df_sale = df_house[['id', 'zipcode', 'price', 'date']].copy()
     df_sale['seasonality'] = pd.to_datetime(df_sale['date']).dt.month.apply(apply_date_seasonality)
 
@@ -60,7 +59,6 @@ def gen_sale_table(df_house):
     for index, row in df_house_merge_median.iterrows():
         if row['price'] > row['seasonality_median_price']:
             df_house_merge_median.loc[index, 'sale_price'] = row['price'] + calculate_percentage(row['price'], 10)
-
         else:
             df_house_merge_median.loc[index, 'sale_price'] = row['price'] + calculate_percentage(row['price'], 30)
 

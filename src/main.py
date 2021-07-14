@@ -50,6 +50,8 @@ def gen_buying_table(df_house):
 def gen_sale_table(df_house):
     """Generate df of sale analysis, calculating the median price per zipcode and seasonality"""
     df_sale = df_house[['id', 'zipcode', 'price', 'date']].copy()
+
+    # creating new column seasonality, describing the season the house went on sale
     df_sale['seasonality'] = pd.to_datetime(df_sale['date']).dt.month.apply(apply_date_seasonality)
 
     #generate df of median price per zipcode and seasonality
@@ -73,9 +75,18 @@ def gen_sale_table(df_house):
 
 def gen_profit_table(data_purchase, data_sale):
     df_purchase_filtered = data_purchase.query('buying_analysis == "Buy"')
-    data_profit_merge = data_sale.merge(df_purchase_filtered, on='id')
+    data_merge = df_purchase_filtered.merge(data_sale[['id', 'seasonality', 'median_price_seasonality',
+                                                              'selling_price_suggestion', 'expected_profit']], on='id')
 
-    return data_profit_merge
+    l_house = list(data_merge['id'].unique())
+    l_profit = []
+
+    for id_house in l_house:
+        row = data_merge[data_merge['id'] == id_house]['expected_profit'].idxmax()
+        l_profit.append(data_merge.loc[row].to_dict())
+
+    df_profit = pd.DataFrame(l_profit)
+    return df_profit
 
 
 if __name__ == '__main__':

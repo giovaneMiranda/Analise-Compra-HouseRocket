@@ -46,7 +46,6 @@ def run_ui(df_house_purchase, df_house_sale, df_house_profit):
     f_buying_price = st.sidebar.slider('Select maximum price', min_value=int(df_house_purchase['price'].min()),
                                        max_value=int(df_house_purchase['price'].max()),
                                        value=int(df_house_purchase['price'].max()), step=1)
-
     # filter: buying_analysis
     f_only_buy = st.sidebar.checkbox('Check to see only properties suggestted to be purchased')
 

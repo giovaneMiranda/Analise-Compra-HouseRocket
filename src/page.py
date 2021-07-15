@@ -32,7 +32,7 @@ def sale_analysis_ui(df_sale, f_column_sale):
 
 
 def run_ui(df_house_purchase, df_house_sale, df_house_profit):
-    """Generate main page"""
+    """Generate main page."""
 
     # creating sidebar
     st.sidebar.title('House Rocket Filter')

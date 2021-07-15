@@ -55,7 +55,6 @@ def run_ui(df_house_purchase, df_house_sale, df_house_profit):
                                                 default=['id', 'zipcode', 'price','seasonality',
                                                          'median_price_seasonality', 'condition',
                                                          'selling_price_suggestion', 'expected_profit'])
-
     # creating main content
     st.title('House Rocket Data Report')
 

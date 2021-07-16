@@ -100,6 +100,7 @@ def gen_profit_table(data_purchase, data_sale):
 
 
 if __name__ == '__main__':
+
     st.set_page_config(
         page_title="House Rocket Insights",
         page_icon="🏠",

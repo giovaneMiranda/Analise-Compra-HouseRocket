@@ -26,7 +26,7 @@ The assumptions about the business problem is as follows:
 
 - Houses near lakes areas have higher prices. 
 - Seasonality impact real state demand. 
-- 
+
 
 # 3. Solution Strategy
 # 4. Top 5 Data Insights
@@ -35,4 +35,4 @@ The assumptions about the business problem is as follows:
 
 ## References:
 - Seasons Impact Real Estate [Investopedia](https://www.investopedia.com/articles/investing/010717/seasons-impact-real-estate-more-you-think.asp)
-- How Much Value Does Living the Lakefront Dream Add to a Property?[HomeLight](https://www.homelight.com/blog/how-much-value-does-a-lakefront-add-to-a-property/)
+- How Much Value Does Living the Lakefront Dream Add to a Property? [HomeLight](https://www.homelight.com/blog/how-much-value-does-a-lakefront-add-to-a-property/)

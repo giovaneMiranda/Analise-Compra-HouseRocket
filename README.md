@@ -18,6 +18,7 @@ The maind strategy is to buy good houses in great locations at low prices and th
 
 # 2. Business Assumptions.
 The assumptions about the business problem is as follows:
+- Seasonality impact real state demand. 
 - Seasons: 
   - Winter starts on December
   - Spring starts on March
@@ -25,7 +26,7 @@ The assumptions about the business problem is as follows:
   - Fall starts on September
 
 - Houses near lakes areas have higher prices. 
-- Seasonality impact real state demand. 
+
 
 
 # 3. Solution Strategy

@@ -1,5 +1,5 @@
 # House Rocket 
-This repository contains analysis and data af a real estate company.
+This repository contains analysis and data of a real estate company.
 All information below is fiction. 
 
 ## House Rocket buy and sell analysis

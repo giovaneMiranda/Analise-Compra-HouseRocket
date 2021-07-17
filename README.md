@@ -19,9 +19,9 @@ The maind strategy is to buy good houses in great locations at low prices and th
 # 2. Business Assumptions.
 The assumptions about the business problem is as follows:
 - Seasons: 
--- Winter starts on December
--- Spring starts on March
--- Summer starts on June
--- Fall starts on September
+  - Winter starts on December
+  - Spring starts on March
+  - Summer starts on June
+  - Fall starts on September
 
 - Houses near lakes areas have higher prices. 

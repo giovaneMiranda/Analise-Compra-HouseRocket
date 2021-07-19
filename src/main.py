@@ -97,7 +97,6 @@ def gen_profit_table(data_purchase, data_sale):
         l_profit.append(data_merge.loc[row].to_dict())
 
     df_profit = pd.DataFrame(l_profit)
-
     df_profit = df_profit.rename(columns={'seasonality': 'season_selling'})
     df_profit.to_csv('../data/processed/kc_house_profit.csv', index=False)
     return df_profit

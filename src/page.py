@@ -23,7 +23,8 @@ def purchase_analysis_ui(df_purchase, f_column_buying, f_buying_price, f_only_bu
 def sale_analysis_ui(df_sale, f_column_sale, f_buying_price_selling):
     df_sale_filtered = df_sale.loc[df_sale['price'] <= f_buying_price_selling, f_column_sale]
     st.dataframe(df_sale_filtered)
-    df_season_profit = df_sale_filtered[['seasonality', 'expected_profit']].groupby('seasonality').sum()
+
+    df_season_profit = df_sale_filtered[['season_selling', 'expected_profit']].groupby('season_selling').sum()
 
     fig_season_profit = px.bar(df_season_profit)
     st.write('***The sum of expected profit is US$ {:,.2f}'.format(df_sale_filtered['expected_profit'].sum()),
@@ -55,8 +56,8 @@ def run_ui(df_house_purchase, df_house_sale, df_house_profit):
     st.sidebar.subheader('Selling Suggestions')
     # filter : Properties Attributes
     f_column_profit = st.sidebar.multiselect('Properties Attributes', options=list(df_house_profit.columns),
-                                             default=['id', 'zipcode', 'price', 'seasonality',
-                                                      'median_price_seasonality', 'condition',
+                                             default=['id', 'zipcode', 'price', 'season_selling',
+                                                      'median_price_season', 'condition',
                                                       'selling_price_suggestion', 'expected_profit'])
     f_buying_price_selling = st.sidebar.slider('Select maximum price', min_value=int(df_house_profit['price'].min()),
                                                max_value=int(df_house_profit['price'].max()),

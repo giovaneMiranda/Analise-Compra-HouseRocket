@@ -25,7 +25,14 @@ The assumptions about the business problem is as follows:
   - Summer starts on June
   - Fall starts on September
 
-- Houses near lakes areas have higher prices. 
+- Houses near lakes areas have higher prices.
+- Criteria to determine wether a property is suitable for purchase. 
+  - The proprerty must have condition greater or iqual than 3. 
+  - The property price must be smaller than the median price on the region. 
+- Criteria to determine a property sale. 
+  - Property price greater than median price region per season, selling price is added in 30%
+  - Property price less than median price region per season, selling price is added in 10%
+  - Porperty will be sold in season with the highest profit. 
 - Dataset variables:
 
 Variable     | Definition

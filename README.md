@@ -65,7 +65,7 @@ Variable     | Definition
 # 4. Top 3 Data Insights
 **Hypothesis 01:** Properties that have a view of the water are 20% more expensive on average
 
-**True:** As observed, property roperties that have a view of the water are more expensive on average with 95% confidence. Property are up to 77% more expensive.
+**True:** As observed, properties that have a view of the water are more expensive on average with 95% confidence. Property are up to 77% more expensive.
 
 **Hypothesis 02:** Properties with a construction date less than 1955 are 50% cheaper on average. 
 

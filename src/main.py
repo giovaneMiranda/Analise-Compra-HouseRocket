@@ -50,8 +50,8 @@ def gen_buying_table(df_house):
     return df_purchase
 
 
-def gen_sale_table(df_house):
-    """Generate df of sale analysis, calculating the median price per zipcode and seasonality"""
+def gen_sale_agg_table(df_house):
+    """Generate sale analysis DF, calculating the median price per zipcode and seasonality"""
 
     df_sale = df_house[['id', 'zipcode', 'price', 'date']].copy()
 
@@ -81,7 +81,7 @@ def gen_sale_table(df_house):
 
 
 def gen_profit_table(data_purchase, data_sale):
-    """Generate profit table, based on each house and or price per season"""
+    """Generate profit analysis DF, based on each house and price per season"""
 
     df_purchase_filtered = data_purchase.query('buying_analysis == "Buy"').copy()
     df_sale_filtered = data_sale[['id', 'seasonality', 'median_price_season',
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     data_normalize = transform_date(data_raw)
 
     data_purchase_processing = gen_buying_table(data_normalize)
-    data_sale_processing = gen_sale_table(data_normalize)
+    data_sale_processing = gen_sale_agg_table(data_normalize)
     data_profit = gen_profit_table(data_purchase_processing, data_sale_processing)
 
     pg.run_ui(data_purchase_processing, data_sale_processing, data_profit)

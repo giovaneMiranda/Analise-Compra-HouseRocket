@@ -12,7 +12,7 @@ def purchase_analysis_ui(df_purchase, f_column_buying, f_buying_price, f_only_bu
     if f_only_buy:
         df_purchase = df_purchase.query('buying_analysis == "Buy"')
 
-    df_purchase_filtered = df_purchase.loc[df_purchase['price'] <= f_buying_price, f_column_buying].copy()
+    df_purchase_filtered = df_purchase.loc[df_purchase['price'] <= f_buying_price, f_column_buying]
     df_purchase_style = df_purchase_filtered.style.applymap(highlight_suggestion,
                                                             subset=pd.IndexSlice[:, ['buying_analysis']])
     st.dataframe(df_purchase_style)

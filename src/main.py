@@ -55,7 +55,7 @@ def gen_sale_agg_table(df_house):
 
     df_sale = df_house[['id', 'zipcode', 'price', 'date']].copy()
 
-    # creating new column seasonality, describing the season the house went on sale
+    # creating new column seasonality, describing witch season the property was available.
     df_sale['seasonality'] = pd.to_datetime(df_sale['date']).dt.month.apply(apply_date_seasonality)
 
     # generate df of median price per zipcode and seasonality

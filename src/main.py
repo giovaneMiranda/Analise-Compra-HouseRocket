@@ -53,16 +53,18 @@ def gen_buying_table(df_house):
 def gen_sale_agg_table(df_house):
     """Generate sale analysis DF, calculating the median price per zipcode and seasonality"""
 
-    df_sale = df_house[['id', 'zipcode', 'price', 'date']].copy()
+    df_sale = df_house.copy()
 
-    # creating new column seasonality, describing witch season the property was available.
-    df_sale['seasonality'] = pd.to_datetime(df_sale['date']).dt.month.apply(apply_date_seasonality)
+    # creating new column seasonality, describing the season the house went on sale
+    df_sale['season'] = pd.to_datetime(df_sale['date']).dt.month.apply(apply_date_seasonality)
 
     # generate df of median price per zipcode and seasonality
-    df_median_seasonality = df_sale.groupby(['zipcode', 'seasonality'])['price'].median().to_frame(
+    df_median_seasonality = df_sale[['id', 'zipcode', 'price', 'date', 'season']]
+    df_median_seasonality = df_median_seasonality.groupby(['zipcode', 'season'])['price'].median().to_frame(
         name='median_price_season').reset_index()
+    df_median_seasonality = df_median_seasonality.rename(columns={'season': 'season_selling'})
 
-    df_house_merge_median = df_house.merge(df_median_seasonality, on='zipcode')
+    df_house_merge_median = df_sale.merge(df_median_seasonality, on='zipcode')
 
     for index, row in df_house_merge_median.iterrows():
         if row['price'] > row['median_price_season']:
@@ -84,8 +86,8 @@ def gen_profit_table(data_purchase, data_sale):
     """Generate profit analysis DF, based on each house and price per season"""
 
     df_purchase_filtered = data_purchase.query('buying_analysis == "Buy"').copy()
-    df_sale_filtered = data_sale[['id', 'seasonality', 'median_price_season',
-                                                       'selling_price_suggestion', 'expected_profit']].copy()
+    df_sale_filtered = data_sale[['id', 'season', 'season_selling', 'median_price_season',
+                                  'selling_price_suggestion', 'expected_profit']].copy()
     data_merge = df_purchase_filtered.merge(df_sale_filtered, on='id')
 
     l_house = list(data_merge['id'].unique())
@@ -97,7 +99,6 @@ def gen_profit_table(data_purchase, data_sale):
         l_profit.append(data_merge.loc[row].to_dict())
 
     df_profit = pd.DataFrame(l_profit)
-    df_profit = df_profit.rename(columns={'seasonality': 'season_selling'})
     df_profit.to_csv('../data/processed/kc_house_profit.csv', index=False)
     return df_profit
 

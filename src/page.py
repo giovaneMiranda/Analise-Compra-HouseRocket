@@ -56,9 +56,9 @@ def run_ui(df_house_purchase, df_house_sale, df_house_profit):
     st.sidebar.subheader('Selling Suggestions')
     # filter : Properties Attributes
     f_column_profit = st.sidebar.multiselect('Properties Attributes', options=list(df_house_profit.columns),
-                                             default=['id', 'zipcode', 'price', 'season_selling',
-                                                      'median_price_season', 'condition',
-                                                      'selling_price_suggestion', 'expected_profit'])
+                                             default=['id', 'zipcode', 'price', 'season', 'season_selling',
+                                                      'median_price_season', 'selling_price_suggestion',
+                                                      'expected_profit'])
     f_buying_price_selling = st.sidebar.slider('Select maximum price', min_value=int(df_house_profit['price'].min()),
                                                max_value=int(df_house_profit['price'].max()),
                                                value=int(df_house_profit['price'].max()),

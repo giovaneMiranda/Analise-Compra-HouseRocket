@@ -91,7 +91,7 @@ def gen_profit_table(data_purchase, data_sale):
     l_house = list(data_merge['id'].unique())
     l_profit = []
 
-    # iterate each house price per season, taking the one with max profit
+    # iterate each house price per season, taking with max profit
     for id_house in l_house:
         row = data_merge[data_merge['id'] == id_house]['expected_profit'].idxmax()
         l_profit.append(data_merge.loc[row].to_dict())

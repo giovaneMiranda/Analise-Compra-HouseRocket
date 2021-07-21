@@ -33,6 +33,7 @@ The assumptions about the business problem is as follows:
   - Property price greater than median price region per season, selling price is added in 30%
   - Property price less than median price region per season, selling price is added in 10%
   - Porperty will be sold in season with the highest profit. 
+- Bathrooms will not be distinguished by their contents.
 - Dataset variables:
 
 Variable     | Definition
@@ -41,19 +42,19 @@ Variable     | Definition
 |date        | Date that the property was available|
 |price       | Sale price of each property |
 |bedrooms    | Number of bedrooms|
-|bathrooms   | Number of bathrooms, where .5 accounts for a room with a toilet but no shower, and .75 or ¾ bath is a bathroom that contains one sink, one toilet and either a shower or a bath.|
+|bathrooms   | Number of bathrooms|
 |sqft_living | Square footage of the apartments interior living space|
 |sqft_lot    | Square footage of the land space|
 |floors      | Number of floors|
 |waterfront  | A dummy variable for whether the apartment was overlooking the waterfront or not|
 |view        | An index from 0 to 4 of how good the view of the property was|
 |condition   | An index from 1 to 5 on the condition of the apartment|
-|grade       | An index from 1 to 13, where 1-3 falls short of building construction and design, 7 has an average level of construction and design, and 11-13 have a high quality level of construction and design.|
+|grade       | An index from 1 to 13, where 1-3 small buildings, 7 has an average level of construction and design, and 11-13 have a high quality level of construction and design.|
 |sqft_above  | The square footage of the interior housing space that is above ground level|
 |sqft_basement | The square footage of the interior housing space that is below ground level|
 |yr_built      | The year the property was initially built|
 |yr_renovated  | The year of the property’s last renovation|
-|zipcode       | What zipcode area the property is in|
+|zipcode       | What zipcode(region) area the property is in|
 |lat           | Lattitude|
 |long          | Longitude|
 |sqft_living15 | The square footage of interior housing living space for the nearest 15 neighbors|
@@ -61,7 +62,19 @@ Variable     | Definition
 
 
 # 3. Solution Strategy
-# 4. Top 5 Data Insights
+# 4. Top 3 Data Insights
+**Hypothesis 01:** Properties that have a view of the water are 20% more expensive on average
+
+**True:** As observed, properties that have a view of the water are more expensive on average with 95% confidence. Property are up to 77% more expensive.
+
+**Hypothesis 02:** Properties with a construction date less than 1955 are 50% cheaper on average. 
+
+**False:** As observed, properties with a construction date less than 1955 are ~15% cheaper. 
+
+**Hypothesis 03:** Properties without basement are 40% larger than properties with basement
+
+**False:** As observed, properties without basement are ~25% larger than properties with basement
+
 # 5. Business Results
 # 6. Next Steps to Improve
 

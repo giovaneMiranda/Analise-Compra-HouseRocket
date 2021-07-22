@@ -76,7 +76,7 @@ Variable     | Definition
 **False:** As observed, properties without basement are ~25% larger than properties with basement
 
 # 5. Business Results
-Our full original data set contains the records of 21,613 propertys, among them 10502 are valid for a sale. Suppose we were to purchase and sell all propertys valid at the highest profit season. Thus, translating it to business numbers.
+Our full original data set contains the records of 21,613 propertys, among them 10,502 are valid for a sale. Suppose we were to purchase and sell all propertys valid at the highest profit season. Thus, translating it to business numbers.
 
  Selling Season | Fall                | Spring            | Summer          | Winter        | Total Year       | 
 --------------- | ------------------- | ----------------- | --------------- |-------------- |----------------- |

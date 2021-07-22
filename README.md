@@ -80,7 +80,7 @@ Our full original data set contains the records of 21,613 propertys, among them 
 
 
  Selling Season  | Fall                | Spring            | Summer          | Winter        | Total Year |      
-|--------------- | -----------------------|
+------------ | -------------                                                                    
 |Profit          | US$1,094,528,917.80 | US$125,757,524.10 | US$2,100,642.00 | US$585,000.00 | 1,222,972,142.90 |
 
  

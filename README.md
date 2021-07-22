@@ -62,6 +62,9 @@ Variable     | Definition
 
 
 # 3. Solution Strategy
+My strategy to solve this challenge was:
+
+
 # 4. Top 3 Data Insights
 **Hypothesis 01:** Properties that have a view of the water are 20% more expensive on average
 

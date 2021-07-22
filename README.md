@@ -78,7 +78,8 @@ Variable     | Definition
 # 5. Business Results
 Our full original data set contains the records of 21,613 propertys, among them 10502 are valid for a sale. Suppose we were to purchase and sell all propertys valid at the highest profit season. Thus, translating it to business numbers.
 
- Selling Season  | Fall                | Spring            | Summer          | Winter        | Total Year       
+
+ Selling Season  | Fall                | Spring            | Summer          | Winter        | Total Year |      
 |--------------- | -----------------------|
 |Profit          | US$1,094,528,917.80 | US$125,757,524.10 | US$2,100,642.00 | US$585,000.00 | 1,222,972,142.90 |
 

@@ -30,8 +30,8 @@ The assumptions about the business problem is as follows:
   - The proprerty must have condition greater or iqual than 3. 
   - The property price must be smaller than the median price on the region. 
 - Criteria to determine a property sale. 
-  - Property price greater than median price region per season, selling price is added in 30%
-  - Property price less than median price region per season, selling price is added in 10%
+  - Property price greater than median region price per season, selling price is added in 30%
+  - Property price less than median region price per season, selling price is added in 10%
   - Porperty will be sold in season with the highest profit. 
 - Bathrooms will not be distinguished by their contents.
 - Dataset variables:
@@ -62,6 +62,9 @@ Variable     | Definition
 
 
 # 3. Solution Strategy
+My strategy to solve this challenge was:
+
+
 # 4. Top 3 Data Insights
 **Hypothesis 01:** Properties that have a view of the water are 20% more expensive on average
 
@@ -76,6 +79,12 @@ Variable     | Definition
 **False:** As observed, properties without basement are ~25% larger than properties with basement
 
 # 5. Business Results
+Our full original data set contains the records of 21,613 propertys, among them 10,502 are valid for purchase. Suppose we were to purchase and sell all propertys valid at the highest profit season. Thus, translating it to business numbers.
+
+ Selling Season | Fall                | Spring            | Summer          | Winter        | Total Year          | 
+--------------- | ------------------- | ----------------- | --------------- |-------------- |-----------------    |
+Profit          | US$1,094,528,917.80 | US$125,757,524.10 | US$2,100,642.00 | US$585,000.00 | US$1,222,972,142.90 |
+ 
 # 6. Next Steps to Improve
 
 ## References:

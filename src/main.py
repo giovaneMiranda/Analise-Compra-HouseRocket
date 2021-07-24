@@ -24,10 +24,9 @@ def calculate_percentage(value, percentage):
     return value * (percentage / 100)
 
 
-def transform_date(data):
-    """Generates a column seasonality based on date"""
-
+def transform_data(data):
     data['date'] = pd.to_datetime(data['date']).dt.date
+    data['bathrooms'] = data['bathrooms'].astype('int64')
 
     return data
 
@@ -59,11 +58,11 @@ def gen_sale_agg_table(df_house):
     df_sale['season'] = pd.to_datetime(df_sale['date']).dt.month.apply(apply_date_seasonality)
 
     # generate df of median price per zipcode and seasonality
-    df_median_seasonality = df_sale[['id', 'zipcode', 'price', 'date', 'season']]
+    df_median_seasonality = df_sale[['zipcode', 'price', 'season']]
     df_median_seasonality = df_median_seasonality.groupby(['zipcode', 'season'])['price'].median().to_frame(
         name='median_price_season').reset_index()
-    df_median_seasonality = df_median_seasonality.rename(columns={'season': 'season_selling'})
 
+    df_median_seasonality = df_median_seasonality.rename(columns={'season': 'season_selling'})
     df_house_merge_median = df_sale.merge(df_median_seasonality, on='zipcode')
 
     for index, row in df_house_merge_median.iterrows():
@@ -114,10 +113,12 @@ if __name__ == '__main__':
     path = '../data/raw/kc_house_data.csv'
 
     data_raw = extraction_dataset(path)
-    data_normalize = transform_date(data_raw)
+    data_normalize = transform_data(data_raw)
+    data_agg = data_normalize[['id', 'date', 'zipcode', 'price', 'condition']]
 
-    data_purchase_processing = gen_buying_table(data_normalize)
-    data_sale_processing = gen_sale_agg_table(data_normalize)
+    data_purchase_processing = gen_buying_table(data_agg)
+    data_purchase_processing = data_normalize.merge(data_purchase_processing[['id', 'median_price_zip', 'buying_analysis']], on='id')
+    data_sale_processing = gen_sale_agg_table(data_agg)
     data_profit = gen_profit_table(data_purchase_processing, data_sale_processing)
 
     pg.run_ui(data_purchase_processing, data_sale_processing, data_profit)

@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import folium
+from folium.plugins import MarkerCluster
 
 
 def highlight_suggestion(val):

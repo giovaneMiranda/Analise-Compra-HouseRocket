@@ -31,10 +31,10 @@ def transform_data(data):
     return data
 
 
-def gen_buying_table(df_house):
+def gen_buying_table(df_house_agg, df_house):
     """Generates a columns with buying suggestion"""
 
-    df_purchase = df_house.copy()
+    df_purchase = df_house_agg.copy()
     df_purchase['median_price_zip'] = df_purchase.groupby('zipcode')['price'].transform('median')
 
     for index, row in df_purchase.iterrows():
@@ -44,7 +44,8 @@ def gen_buying_table(df_house):
         else:
             df_purchase.loc[index, 'buying_analysis'] = 'Not Buy'
 
-    # df_purchase.to_csv('../data/processed/kc_house_purchase.csv', index=False)
+    df_purchase = df_house.merge(df_purchase[['id', 'median_price_zip', 'buying_analysis']], on='id')
+    df_purchase.to_csv('../data/processed/kc_house_purchase.csv', index=False)
 
     return df_purchase
 
@@ -76,7 +77,7 @@ def gen_sale_agg_table(df_house):
     df_house_merge_median['expected_profit'] = df_house_merge_median['selling_price_suggestion'] - \
                                                df_house_merge_median['price']
 
-    # df_house_merge_median.to_csv('../data/processed/kc_house_sale.csv', index=False)
+    df_house_merge_median.to_csv('../data/processed/kc_house_sale.csv', index=False)
 
     return df_house_merge_median
 
@@ -98,7 +99,7 @@ def gen_profit_table(data_purchase, data_sale):
         l_profit.append(data_merge.loc[row].to_dict())
 
     df_profit = pd.DataFrame(l_profit)
-    # df_profit.to_csv('../data/processed/kc_house_profit.csv', index=False)
+    df_profit.to_csv('../data/processed/kc_house_profit.csv', index=False)
     return df_profit
 
 
@@ -116,9 +117,12 @@ if __name__ == '__main__':
     data_normalize = transform_data(data_raw)
     data_agg = data_normalize[['id', 'date', 'zipcode', 'price', 'condition']]
 
-    data_purchase_processing = gen_buying_table(data_agg)
-    data_purchase_processing = data_normalize.merge(data_purchase_processing[['id', 'median_price_zip', 'buying_analysis']], on='id')
-    data_sale_processing = gen_sale_agg_table(data_agg)
-    data_profit = gen_profit_table(data_purchase_processing, data_sale_processing)
+    # data_purchase_processing = gen_buying_table(data_agg, data_normalize)
+    # data_sale_processing = gen_sale_agg_table(data_agg)
+    # data_profit = gen_profit_table(data_purchase_processing, data_sale_processing)
+
+    data_purchase_processing = extraction_dataset('../data/processed/kc_house_purchase.csv')
+    data_sale_processing = extraction_dataset('../data/processed/kc_house_sale.csv')
+    data_profit = extraction_dataset('../data/processed/kc_house_profit.csv')
 
     pg.run_ui(data_purchase_processing, data_sale_processing, data_profit)

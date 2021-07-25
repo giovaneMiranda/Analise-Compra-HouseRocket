@@ -3,6 +3,14 @@ import pandas as pd
 import plotly.express as px
 import folium
 from folium.plugins import MarkerCluster
+from streamlit_folium import folium_static
+
+
+def generator_base_map(data):
+    density_map = folium.Map(location=[data['lat'].mean(), data['long'].mean()],
+                             default_zoom_star=15)
+
+    return density_map
 
 
 def highlight_suggestion(val):
@@ -18,6 +26,19 @@ def purchase_analysis_ui(df_purchase, f_column_buying, f_buying_price, f_only_bu
     df_purchase_style = df_purchase_filtered.style.applymap(highlight_suggestion,
                                                             subset=pd.IndexSlice[:, ['buying_analysis']])
     st.dataframe(df_purchase_style)
+
+    # Map Density overview
+    st.header('House Density')
+    # base map
+
+    density_map = generator_base_map(df_purchase)
+    make_cluster = MarkerCluster().add_to(density_map)
+    for index, row in df_purchase.iterrows():
+        folium.Marker(location=[row['lat'], row['long']],
+                      popup='Price: {}. Data: {}. Bedrooms: {}.'.format(row['price'],
+                                                                        row['date'],
+                                                                        row['bedrooms'])).add_to(make_cluster)
+    folium_static(density_map)
 
     return None
 

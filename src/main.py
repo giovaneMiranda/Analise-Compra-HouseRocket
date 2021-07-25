@@ -117,12 +117,12 @@ if __name__ == '__main__':
     data_normalize = transform_data(data_raw)
     data_agg = data_normalize[['id', 'date', 'zipcode', 'price', 'condition']]
 
-    # data_purchase_processing = gen_buying_table(data_agg, data_normalize)
-    # data_sale_processing = gen_sale_agg_table(data_agg)
-    # data_profit = gen_profit_table(data_purchase_processing, data_sale_processing)
+    data_purchase_processing = gen_buying_table(data_agg, data_normalize)
+    data_sale_processing = gen_sale_agg_table(data_agg)
+    data_profit = gen_profit_table(data_purchase_processing, data_sale_processing)
 
-    data_purchase_processing = extraction_dataset('../data/processed/kc_house_purchase.csv')
-    data_sale_processing = extraction_dataset('../data/processed/kc_house_sale.csv')
-    data_profit = extraction_dataset('../data/processed/kc_house_profit.csv')
+    # data_purchase_processing = extraction_dataset('../data/processed/kc_house_purchase.csv')
+    # data_sale_processing = extraction_dataset('../data/processed/kc_house_sale.csv')
+    # data_profit = extraction_dataset('../data/processed/kc_house_profit.csv')
 
     pg.run_ui(data_purchase_processing, data_sale_processing, data_profit)

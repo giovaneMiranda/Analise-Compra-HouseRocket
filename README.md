@@ -30,8 +30,8 @@ The assumptions about the business problem is as follows:
   - The proprerty must have condition greater or iqual than 3. 
   - The property price must be smaller than the median price on the region. 
 - Criteria to determine a property sale. 
-  - Property price greater than median region price per season, selling price is added in 30%
-  - Property price less than median region price per season, selling price is added in 10%
+  - Property price greater than median region price per season, selling price is added in 10%
+  - Property price less than median region price per season, selling price is added in 30%
   - Porperty will be sold in season with the highest profit. 
 - Bathrooms will not be distinguished by their contents.
 - Dataset variables:
